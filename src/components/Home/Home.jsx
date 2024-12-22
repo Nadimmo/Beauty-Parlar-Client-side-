@@ -2,6 +2,7 @@ import React from 'react'
 import { Banner } from './Banner'
 import Services from './Services'
 import Professional from './Professional'
+import Testimonials from './Testimonials'
 
 export const Home = () => {
   return (
@@ -9,6 +10,7 @@ export const Home = () => {
        <Banner></Banner>
        <Services></Services>
        <Professional></Professional>
+       <Testimonials></Testimonials>
     </div>
   )
 }
