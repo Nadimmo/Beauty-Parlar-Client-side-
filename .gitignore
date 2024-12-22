@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 assets
+icons
+images
+logo
 
 # Editor directories and files
 .vscode/*

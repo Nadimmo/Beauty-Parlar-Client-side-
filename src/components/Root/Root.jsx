@@ -5,12 +5,10 @@ import { Footer } from '../Footer/Footer'
 
 export const Root = () => {
   return (
-    <div className="mx-5">
+    <div >
         <Navbar></Navbar>
-        <div className='mx-10'>
         <Outlet></Outlet>
-        </div>
-        <Footer></Footer>
+        <Footer> </Footer>
     </div>
   )
 }
