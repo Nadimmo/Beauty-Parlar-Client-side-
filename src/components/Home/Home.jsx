@@ -4,6 +4,8 @@ import Services from './Services'
 import Professional from './Professional'
 import Testimonials from './Testimonials'
 import SubmissionForm from './SubmissionFrom'
+import WhyChooseUs from './WhyChooseUs'
+import OffersAndPackages from './OffersAndPackages'
 
 export const Home = () => {
   return (
@@ -11,6 +13,8 @@ export const Home = () => {
        <Banner></Banner>
        <Services></Services>
        <Professional></Professional>
+       <WhyChooseUs></WhyChooseUs>
+       <OffersAndPackages></OffersAndPackages>
        <Testimonials></Testimonials>
        <SubmissionForm></SubmissionForm>
     </div>
