@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaFacebook } from "react-icons/fa";
 import {  FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
+  const {register} = useContext(AuthContext)
+  // console.log(name)
 
     const handlerSubmit = (e) => {
         e.preventDefault();
@@ -13,19 +17,36 @@ const Register = () => {
         const email = from.email.value;
         const password = from.password.value;
         const confirmPassword = from.confirmPassword.value;
+        const userInfo ={
+          firstName: firstName,
+          lastName: lastName,
+          email: email,
+          password: password
+      }
+      console.log(userInfo)
+
         // Validation logic
         if (password!== confirmPassword) {
             alert("Passwords do not match");
             return;
+        }else{
+          register(email,password)
+          .then(res =>{
+            if(res.data){
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Account create successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              from.reset()
+            }
+          })
+          .catch(err =>{
+            alert(err.message)
+          })
         }
-       
-        const userInfo ={
-            firstName,
-            lastName,
-            email,
-            password
-        }
-        console.log(userInfo)
     }
     
 
