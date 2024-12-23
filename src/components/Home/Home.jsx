@@ -6,6 +6,7 @@ import Testimonials from './Testimonials'
 import SubmissionForm from './SubmissionFrom'
 import WhyChooseUs from './WhyChooseUs'
 import OffersAndPackages from './OffersAndPackages'
+import FAQ from './FAQ'
 
 export const Home = () => {
   return (
@@ -15,8 +16,9 @@ export const Home = () => {
        <Professional></Professional>
        <WhyChooseUs></WhyChooseUs>
        <OffersAndPackages></OffersAndPackages>
-       <Testimonials></Testimonials>
        <SubmissionForm></SubmissionForm>
+       <Testimonials></Testimonials>
+       <FAQ></FAQ>
     </div>
   )
 }
