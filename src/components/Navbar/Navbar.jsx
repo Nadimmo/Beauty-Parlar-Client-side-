@@ -34,7 +34,7 @@ export const Navbar = () => {
                 <NavLink to={"/ourTeam"} className="hover:text-primary transition-colors duration-300">Our Team</NavLink>
             </li>
             <li>
-                <NavLink to={"/dashboard"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
+                <NavLink to={"/dashboard/bookingList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
             </li>
             <li>
                 <NavLink to={"/contact"} className="hover:text-primary transition-colors duration-300">Contact</NavLink>
@@ -77,7 +77,7 @@ export const Navbar = () => {
                     <img
                         src="https://i.ibb.co.com/8gcSWbj/logo.png"
                         alt="Logo"
-                        className="w-22 h-10"
+                        className="w-22 h-10 lg:block hidden"
                     />
                 </a>
             </div>

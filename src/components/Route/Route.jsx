@@ -8,6 +8,9 @@ import Register from "../pages/Register/Register";
 import { Login } from "../pages/Login/Login";
 import OurTeam from "../pages/OurTeam/OurTeam";
 import Contact from "../pages/Contact/Contact";
+import Dashboard from "./Dashboard";
+import BookingList from "../pages/Dashboard/BookingList/BookingList";
+import Review from "../pages/Dashboard/Review/Review";
 
 const Route = createBrowserRouter([
     {
@@ -23,11 +26,11 @@ const Route = createBrowserRouter([
                 element: <About></About>
             },
             {
-                path:"/ourTeam",
+                path: "/ourTeam",
                 element: <OurTeam></OurTeam>
             },
             {
-                path:'/contact',
+                path: '/contact',
                 element: <Contact></Contact>
             },
             {
@@ -37,6 +40,21 @@ const Route = createBrowserRouter([
             {
                 path: '/login',
                 element: <Login></Login>
+            }
+        ],
+    },
+    {
+        path: "/dashboard",
+        element: <Dashboard></Dashboard>,
+        children: [
+            //user dashboard
+            {
+                path: 'bookingList',
+                element: <BookingList></BookingList>,
+            },
+            {
+                path: 'review',
+                element: <Review></Review>
             }
         ],
     },
