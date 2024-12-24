@@ -1,7 +1,27 @@
-import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import React, { useContext } from 'react';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 export const Navbar = () => {
+    const {user,logOut} = useContext(AuthContext)
+    const navigate = useNavigate()
+
+    const handlerRemove =(e)=>{
+        e.preventDefault()
+        logOut()
+        .then(()=>{
+            Swal.fire({
+                title: 'Logged out successfully!',
+                text: 'You will be redirected to the home page.',
+                icon:'success',
+                confirmButtonText: 'Continue'
+            })
+            navigate('/')
+        })
+    }
+
+
     const Links = (
         <>
             <li>
@@ -67,7 +87,11 @@ export const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <Link to={'/login'} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Login </Link>
+              {
+                user? <>
+                 <button onClick={handlerRemove} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Sign Out </button>
+                </>:  <Link to={'/login'} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Login </Link>
+              }
             </div>
         </div>
     );

@@ -1,54 +1,92 @@
 import React, { useContext } from "react";
 import { FaFacebook } from "react-icons/fa";
-import {  FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { FcGoogle } from "react-icons/fc";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const {register} = useContext(AuthContext)
-  // console.log(name)
+  const { register, signInWithGoogle, signInWithFacebook} = useContext(AuthContext)
+  const navigate = useNavigate()
 
-    const handlerSubmit = (e) => {
-        e.preventDefault();
-        const from = e.target;
-        const firstName = from.firstName.value;
-        const lastName = from.lastName.value;
-        const email = from.email.value;
-        const password = from.password.value;
-        const confirmPassword = from.confirmPassword.value;
-        const userInfo ={
-          firstName: firstName,
-          lastName: lastName,
-          email: email,
-          password: password
-      }
-      console.log(userInfo)
 
-        // Validation logic
-        if (password!== confirmPassword) {
-            alert("Passwords do not match");
-            return;
-        }else{
-          register(email,password)
-          .then(res =>{
-            if(res.data){
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Account create successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              from.reset()
-            }
-          })
-          .catch(err =>{
-            alert(err.message)
-          })
-        }
+  const handlerSubmit = (e) => {
+    e.preventDefault();
+    const from = e.target;
+    const firstName = from.firstName.value;
+    const lastName = from.lastName.value;
+    const email = from.email.value;
+    const password = from.password.value;
+    const confirmPassword = from.confirmPassword.value;
+    const userInfo = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      password: password
     }
-    
+    // console.log(userInfo)
+
+    // Validation logic
+    if (password !== confirmPassword) {
+      alert("Passwords do not match");
+      return;
+    } else {
+      register(email, password)
+        .then(res => {
+          if (res.user) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Account create successfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            from.reset()
+             navigate('/')
+          }
+        })
+        .catch(err => {
+          alert(err.message)
+        })
+    }
+  }
+
+  const handlerGoogle = (e) => {
+    e.preventDefault();
+    signInWithGoogle()
+      .then(res => {
+        if (res.user) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: "Login successfully",
+            showConfirmButton: false,
+            timer: 1500
+          });
+          navigate('/')
+        }
+      })
+
+  }
+
+  const handlerFacebook = (e)=>{
+    e.preventDefault()
+    // signInWithFacebook()
+    //  .then(res => {
+    //   if(res.user){
+    //     Swal.fire({
+    //         position: "top-end",
+    //         icon: "success",
+    //         title: "Login successfully",
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //       });
+    //       from.reset()
+    //   }
+    //  })
+  }
+
+
 
 
 
@@ -59,13 +97,13 @@ const Register = () => {
         <h2 className="text-2xl font-bold text-center text-gray-800 mb-6">
           Create an Account
         </h2>
-        <form onSubmit={ handlerSubmit}>
+        <form onSubmit={handlerSubmit}>
           <div className="mb-4">
             <label className="block text-sm font-medium text-gray-600 mb-1">
               First Name
             </label>
             <input
-            name="firstName"
+              name="firstName"
               type="text"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#F63E7B] focus:outline-none"
               placeholder="Enter your first name"
@@ -76,7 +114,7 @@ const Register = () => {
               Last Name
             </label>
             <input
-            name="lastName"
+              name="lastName"
               type="text"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#F63E7B] focus:outline-none"
               placeholder="Enter your last name"
@@ -87,7 +125,7 @@ const Register = () => {
               Email Address
             </label>
             <input
-            name="email"
+              name="email"
               type="email"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#F63E7B] focus:outline-none"
               placeholder="Enter your email"
@@ -98,7 +136,7 @@ const Register = () => {
               Password
             </label>
             <input
-            name="password"
+              name="password"
               type="password"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#F63E7B] focus:outline-none"
               placeholder="Enter your password"
@@ -109,7 +147,7 @@ const Register = () => {
               Confirm Password
             </label>
             <input
-            name="confirmPassword"
+              name="confirmPassword"
               type="password"
               className="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-[#F63E7B] focus:outline-none"
               placeholder="Confirm your password"
@@ -135,12 +173,12 @@ const Register = () => {
         </div>
         {/* social login */}
         <div>
-          <button className="w-full py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
-           <FcGoogle className="w-6 h-6  " />
+          <button onClick={handlerGoogle} className="w-full py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
+            <FcGoogle className="w-6 h-6  " />
             <span>Sign up with Google</span>
           </button>
-          <button className="w-full mt-2 py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
-           <FaFacebook className="w-6 h-6 text-[#3076FF]"/>
+          <button onClick={handlerFacebook} className="w-full mt-2 py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
+            <FaFacebook className="w-6 h-6 text-[#3076FF]" />
             <span>Sign up with Facebook</span>
           </button>
         </div>

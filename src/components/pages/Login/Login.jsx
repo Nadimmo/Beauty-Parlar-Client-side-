@@ -1,22 +1,65 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { FaFacebook } from "react-icons/fa";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import Swal from 'sweetalert2';
 
 export const Login = () => {
+    const {login, signInWithGoogle} = useContext(AuthContext)
+    const navigate = useNavigate()
+    const location = useLocation()
+
     const handlerSubmit = (e) => {
         e.preventDefault();
         const from = e.target;
         const email = from.email.value;
         const password = from.password.value;
-        
-
         const userInfo = {
             email,
             password
         }
-        console.log(userInfo)
+        login(email,password)
+        .then(res =>{
+            if(res.user){
+                Swal.fire({
+                    title: 'Logged in successfully!',
+                    text: 'You will be redirected to the home page.',
+                    icon:'success',
+                    confirmButtonText: 'Continue'
+                })
+                from.reset()
+                navigate('/')
+            }
+        })
+        .catch(err =>{
+            Swal.fire({
+                title: 'Error!',
+                text: err.message,
+                icon:'error',
+                confirmButtonText: 'Try again'
+            })
+        })
+        // console.log(userInfo)
     }
+
+     const handlerGoogle = (e) => {
+        e.preventDefault();
+        signInWithGoogle()
+          .then(res => {
+            if (res.user) {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Login successfully",
+                showConfirmButton: false,
+                timer: 1500
+              });
+              navigate('/')
+            }
+          })
+    
+      }
 
 
     return (
@@ -68,7 +111,7 @@ export const Login = () => {
                 </div>
                 {/* social login */}
                 <div>
-                    <button className="w-full py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
+                    <button onClick={handlerGoogle} className="w-full py-2 px-4 border rounded-2xl flex items-center justify-center gap-2 text-gray-600 hover:bg-gray-100 transition-colors">
                         <FcGoogle className="w-6 h-6  " />
                         <span>Sign up with Google</span>
                     </button>
