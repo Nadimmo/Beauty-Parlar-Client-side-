@@ -6,7 +6,7 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
 const Register = () => {
-  const { register, signInWithGoogle, signInWithFacebook} = useContext(AuthContext)
+        const {profileUpdate, register, signInWithGoogle, signInWithFacebook,} = useContext(AuthContext)
   const navigate = useNavigate()
 
 
@@ -33,6 +33,7 @@ const Register = () => {
     } else {
       register(email, password)
         .then(res => {
+          profileUpdate(firstName,lastName)
           if (res.user) {
             Swal.fire({
               position: "top-end",

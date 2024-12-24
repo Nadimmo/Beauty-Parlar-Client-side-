@@ -89,6 +89,7 @@ export const Navbar = () => {
             <div className="navbar-end">
               {
                 user? <>
+                <p className="text-lg font-bold mr-2">{user?.displayName}</p>
                  <button onClick={handlerRemove} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Sign Out </button>
                 </>:  <Link to={'/login'} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Login </Link>
               }
