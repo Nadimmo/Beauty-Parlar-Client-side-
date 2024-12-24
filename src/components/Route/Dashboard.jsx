@@ -15,22 +15,22 @@ const Dashboard = () => {
                 <nav className="space-y-2">
                     <NavLink
                         to={'/book'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaBook className="mr-2" /> Book
                     </NavLink>
                     <NavLink
                         to={'/dashboard/bookingList'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaListAlt className="mr-2" /> Booking List
                     </NavLink>
                     <NavLink
                         to={'/dashboard/review'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaStar className="mr-2" /> Review
                     </NavLink>
                     <NavLink
                         to={'/'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaHome className="mr-2" /> Home
                     </NavLink>
                 </nav>
@@ -41,27 +41,27 @@ const Dashboard = () => {
                 <nav className="space-y-2">
                     <NavLink
                         to={'/dashboard/orderList'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaClipboardList className="mr-2" /> Order List
                     </NavLink>
                     <NavLink
                         to={'/dashboard/addService'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaPlusCircle className="mr-2" /> Add Service
                     </NavLink>
                     <NavLink
                         to={'/dashboard/user'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaUserShield className="mr-2" /> Make Admin
                     </NavLink>
                     <NavLink
                         to={'/dashboard/manage'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaTasks className="mr-2" /> Manage Service
                     </NavLink>
                     <NavLink
                         to={'/'}
-                        className="flex text-lg items-center text-gray-700 hover:text-pink-500 transition-colors">
+                        className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                         <FaHome className="mr-2" /> Home
                     </NavLink>
                 </nav>
