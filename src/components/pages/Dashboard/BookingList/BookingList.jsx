@@ -12,7 +12,7 @@ const BookingList = () => {
   );
 
   return (
-    <div className="mt-10 mx-10">
+    <div className="mt-10 mx-10 bg-white rounded-2xl p-8 shadow-md min-h-screen">
       <h2 className="text-3xl font-bold text-center text-gray-800 mb-8">
         Booking List
       </h2>

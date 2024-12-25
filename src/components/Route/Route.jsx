@@ -12,6 +12,7 @@ import Dashboard from "./Dashboard";
 import BookingList from "../pages/Dashboard/BookingList/BookingList";
 import Review from "../pages/Dashboard/Review/Review";
 import AddService from "../pages/Dashboard/AddService/AddService";
+import OrderList from "../pages/Dashboard/OrderList/OrderList";
 
 const Route = createBrowserRouter([
     {
@@ -56,6 +57,11 @@ const Route = createBrowserRouter([
             {
                 path: 'review',
                 element: <Review></Review>
+            },
+            //admin dashboard
+            {
+                path:'orderList',
+                element: <OrderList></OrderList>
             },
             {
                 path:'addService',
