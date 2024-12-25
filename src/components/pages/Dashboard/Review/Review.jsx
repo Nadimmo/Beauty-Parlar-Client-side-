@@ -54,8 +54,8 @@ const Review = () => {
   };
 
   return (
-    <div className="min-h-screen flex justify-start items-start lg:justify-center lg:items-center bg-gray-100 lg:py-10 lg:px-4">
-      <div className="bg-white shadow-lg rounded-lg p-8 lg:max-w-md lg:w-full">
+    <div className="min-h-screen  rounded-2xl flex justify-start items-start  py-10 px-4">
+      <div className="bg-white rounded-2xl shadow-xl p-8 max-w-xl w-full">
         <h2 className="lg:text-2xl font-bold text-center text-gray-800 mb-6">
           Submit Your Review
         </h2>
@@ -140,9 +140,9 @@ const Review = () => {
           {/* Submit Button */}
           <button
             type="submit"
-            className="lg:w-full bg-[#F63E7B] text-white py-2 px-4 rounded-lg font-semibold hover:bg-[#e22d6c] transition duration-300"
+            className="lg:w-1/3 bg-[#F63E7B] text-white py-2 px-4 rounded-lg font-semibold hover:bg-[#e22d6c] transition duration-300"
           >
-            Submit Review
+            Submit
           </button>
         </form>
       </div>
