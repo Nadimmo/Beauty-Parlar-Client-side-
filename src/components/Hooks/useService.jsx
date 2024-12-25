@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 
 const useService = () => {
     const axiosPublic = useAxiosPublic()
-    const { data: services = [] } = useQuery({
+    const {refetch, data: services = [] } = useQuery({
         queryKey: ['service'],
         queryFn: async () => {
             try {
@@ -15,7 +15,7 @@ const useService = () => {
             }
         }
     })
-    return { services }
+    return { services, refetch }
 }
 
 export default useService

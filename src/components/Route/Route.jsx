@@ -13,6 +13,7 @@ import BookingList from "../pages/Dashboard/BookingList/BookingList";
 import Review from "../pages/Dashboard/Review/Review";
 import AddService from "../pages/Dashboard/AddService/AddService";
 import OrderList from "../pages/Dashboard/OrderList/OrderList";
+import ManageService from "../pages/Dashboard/ManageService/ManageService";
 
 const Route = createBrowserRouter([
     {
@@ -62,6 +63,10 @@ const Route = createBrowserRouter([
             {
                 path:'orderList',
                 element: <OrderList></OrderList>
+            },
+            {
+                path:'manage',
+                element: <ManageService></ManageService>
             },
             {
                 path:'addService',

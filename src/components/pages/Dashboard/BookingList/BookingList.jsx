@@ -28,7 +28,7 @@ const BookingList = () => {
       </div>
 
       {/* Booking Table */}
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto rounded-2xl">
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-[#F63E7B] text-white">
