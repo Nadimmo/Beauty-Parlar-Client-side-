@@ -14,6 +14,7 @@ import Review from "../pages/Dashboard/Review/Review";
 import AddService from "../pages/Dashboard/AddService/AddService";
 import OrderList from "../pages/Dashboard/OrderList/OrderList";
 import ManageService from "../pages/Dashboard/ManageService/ManageService";
+import UpdateService from "../pages/Dashboard/ManageService/UpdateService";
 
 const Route = createBrowserRouter([
     {
@@ -67,6 +68,11 @@ const Route = createBrowserRouter([
             {
                 path:'manage',
                 element: <ManageService></ManageService>
+            },
+            {
+                path:'update/:id',
+                element: <UpdateService></UpdateService>,
+                loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path:'addService',

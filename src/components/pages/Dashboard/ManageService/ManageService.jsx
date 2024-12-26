@@ -2,6 +2,7 @@ import React from 'react';
 import useService from '../../../Hooks/useService';
 import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const ManageService = () => {
   const { services, refetch} = useService();
@@ -31,10 +32,9 @@ const ManageService = () => {
                 timer: 1500
             })
         })
-    
     }
 
-  
+    
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 rounded-2xl">
@@ -70,12 +70,12 @@ const ManageService = () => {
                     ${service.price}
                   </td>
                   <td className="px-4 py-2 text-center">
-                    <button
+                    <Link to={`/dashboard/update/${service._id}`}
                       className="bg-gradient-to-r from-blue-400 to-blue-600 text-white px-4 py-2 rounded-full font-semibold hover:from-blue-500 hover:to-blue-700 shadow-lg transform hover:scale-105 transition duration-300 mr-2"
-                      onClick={() => console.log(`Update ${service.title}`)}
+                      
                     >
                       Update
-                    </button>
+                    </Link>
                     <button
                       className="bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-2 rounded-full font-semibold hover:from-red-500 hover:to-red-700 shadow-lg transform hover:scale-105 transition duration-300"
                       onClick={() => handlerRemoveService(service._id)}
