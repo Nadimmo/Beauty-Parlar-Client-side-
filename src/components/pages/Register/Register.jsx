@@ -4,10 +4,12 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
-        const {profileUpdate, register, signInWithGoogle, signInWithFacebook,} = useContext(AuthContext)
+  const { profileUpdate, register, signInWithGoogle, signInWithFacebook, } = useContext(AuthContext)
   const navigate = useNavigate()
+  const axiosPublic = useAxiosPublic()
 
 
   const handlerSubmit = (e) => {
@@ -33,18 +35,22 @@ const Register = () => {
     } else {
       register(email, password)
         .then(res => {
-          profileUpdate(firstName,lastName)
-          if (res.user) {
-            Swal.fire({
-              position: "top-end",
-              icon: "success",
-              title: "Account create successfully",
-              showConfirmButton: false,
-              timer: 1500
-            });
-            from.reset()
-             navigate('/')
-          }
+          profileUpdate(firstName, lastName)
+          //send user data in database
+          axiosPublic.post('/users', userInfo)
+            .then(res => {
+              if (res.data.insertedId) {
+                Swal.fire({
+                  position: "top-end",
+                  icon: "success",
+                  title: "Account create successfully",
+                  showConfirmButton: false,
+                  timer: 1500
+                });
+                from.reset()
+                navigate('/')
+              }
+            })
         })
         .catch(err => {
           alert(err.message)
@@ -70,7 +76,7 @@ const Register = () => {
 
   }
 
-  const handlerFacebook = (e)=>{
+  const handlerFacebook = (e) => {
     e.preventDefault()
     // signInWithFacebook()
     //  .then(res => {
