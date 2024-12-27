@@ -1,18 +1,13 @@
-import useAxiosPublic from './useAxiosPublic';
 import { useQuery } from '@tanstack/react-query';
+import useAxiosSecure from './useAxiosSecure';
 
 const useService = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const {refetch, data: services = [] } = useQuery({
         queryKey: ['service'],
         queryFn: async () => {
-            try {
-                const response = await axiosPublic.get('/services')
+                const response = await axiosSecure.get('/services')
                 return response.data
-            } catch (error) {
-                console.error('Error fetching service data:', error)
-                throw error
-            }
         }
     })
     return { services, refetch }
