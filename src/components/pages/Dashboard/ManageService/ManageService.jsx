@@ -43,9 +43,11 @@ const ManageService = () => {
         <table className="table-auto w-full bg-white rounded-lg shadow-md">
           <thead className="bg-[#F63E7B] text-white">
             <tr>
+              <th></th>
               <th className="px-4 py-2 text-left">Image</th>
               <th className="px-4 py-2 text-left">Title</th>
               <th className="px-4 py-2 text-left">Price</th>
+              <th className="px-4 py-2">Actions</th>
               <th className="px-4 py-2">Actions</th>
             </tr>
           </thead>
@@ -56,6 +58,9 @@ const ManageService = () => {
                   key={service.id || index}
                   className="border-b hover:bg-gray-100 transition duration-200"
                 >
+                   <td className="px-4 py-2 text-gray-800 font-medium">
+                    {index+1}.
+                  </td>
                   <td className="px-4 py-2">
                     <img
                       src={service.logo}
@@ -76,6 +81,8 @@ const ManageService = () => {
                     >
                       Update
                     </Link>
+                  </td>
+                  <td className="px-4 py-2 text-center">
                     <button
                       className="bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-2 rounded-full font-semibold hover:from-red-500 hover:to-red-700 shadow-lg transform hover:scale-105 transition duration-300"
                       onClick={() => handlerRemoveService(service._id)}

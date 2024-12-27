@@ -7,7 +7,7 @@ const OrderList = () => {
   const totalBookings = orders.length;
 
   return (
-    <div className="mt-10 mx-10 bg-white  rounded-2xl p-8 shadow-md min-h-screen">
+    <div className="mt-10 mx-10 bg-gray-100  rounded-2xl p-8 shadow-md min-h-screen">
     <h2 className="text-3xl  font-bold text-center text-gray-800 mb-8">
       Order List
     </h2>
@@ -24,6 +24,7 @@ const OrderList = () => {
       <table className="min-w-full bg-white shadow-md rounded-lg">
         <thead>
           <tr className="bg-[#F63E7B] text-white">
+            <th></th>
             <th className="py-3 px-6 text-left">Name</th>
             <th className="py-3 px-6 text-left">Service</th>
             <th className="py-3 px-6 text-left">Email</th>
@@ -39,7 +40,10 @@ const OrderList = () => {
               }`}
             >
               <td className="py-3 px-6 text-gray-800 font-medium">
-               {index+1}.  {booking.name}
+                 {index+1}.
+              </td>
+              <td className="py-3 px-6 text-gray-800 font-medium">
+                 {booking.name}
               </td>
               <td className="py-3 px-6 text-gray-800 font-medium">
                 {booking.serviceTitle}

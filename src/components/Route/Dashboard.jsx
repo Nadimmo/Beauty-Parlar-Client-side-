@@ -50,9 +50,9 @@ const Dashboard = () => {
                         <FaPlusCircle className="mr-2" /> Add Service
                     </NavLink>
                     <NavLink
-                        to={'/dashboard/user'}
+                        to={'/dashboard/users'}
                         className="flex items-center text-gray-700 hover:text-pink-500 transition-colors">
-                        <FaUserShield className="mr-2" /> Make Admin
+                        <FaUserShield className="mr-2" /> Manage Users
                     </NavLink>
                     <NavLink
                         to={'/dashboard/manage'}

@@ -15,6 +15,7 @@ import AddService from "../pages/Dashboard/AddService/AddService";
 import OrderList from "../pages/Dashboard/OrderList/OrderList";
 import ManageService from "../pages/Dashboard/ManageService/ManageService";
 import UpdateService from "../pages/Dashboard/ManageService/UpdateService";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 
 const Route = createBrowserRouter([
     {
@@ -68,6 +69,10 @@ const Route = createBrowserRouter([
             {
                 path:'manage',
                 element: <ManageService></ManageService>
+            },
+            {
+                path: 'users',
+                element: <ManageUsers></ManageUsers>
             },
             {
                 path:'update/:id',

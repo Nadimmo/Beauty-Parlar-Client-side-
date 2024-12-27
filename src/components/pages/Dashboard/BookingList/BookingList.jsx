@@ -32,6 +32,7 @@ const BookingList = () => {
         <table className="min-w-full bg-white shadow-md rounded-lg">
           <thead>
             <tr className="bg-[#F63E7B] text-white">
+              <th></th>
               <th className="py-3 px-6 text-left">Title</th>
               <th className="py-3 px-6 text-left">Email</th>
               <th className="py-3 px-6 text-left">Price</th>
@@ -46,7 +47,10 @@ const BookingList = () => {
                 }`}
               >
                 <td className="py-3 px-6 text-gray-800 font-medium">
-                 {index+1}.  {booking.serviceTitle}
+                 {index+1}.
+                </td>
+                <td className="py-3 px-6 text-gray-800 font-medium">
+                  {booking.serviceTitle}
                 </td>
                 <td className="py-3 px-6 text-gray-600">{booking.email}</td>
                 <td className="py-3 px-6 text-[#F63E7B] font-semibold">
