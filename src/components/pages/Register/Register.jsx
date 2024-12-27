@@ -27,6 +27,10 @@ const Register = () => {
       password: password
     }
     // console.log(userInfo)
+    const userData = {
+      name: firstName+" "+lastName,
+      email: email
+    }
 
     // Validation logic
     if (password !== confirmPassword) {
@@ -37,7 +41,7 @@ const Register = () => {
         .then(res => {
           profileUpdate(firstName, lastName)
           //send user data in database
-          axiosPublic.post('/users', userInfo)
+          axiosPublic.post('/users', userData)
             .then(res => {
               if (res.data.insertedId) {
                 Swal.fire({
@@ -62,18 +66,26 @@ const Register = () => {
     e.preventDefault();
     signInWithGoogle()
       .then(res => {
-        if (res.user) {
-          Swal.fire({
-            position: "top-end",
-            icon: "success",
-            title: "Login successfully",
-            showConfirmButton: false,
-            timer: 1500
-          });
-          navigate('/')
+        // console.log(res.user)
+        const userData  ={
+          name: res.user?.displayName,
+          email: res.user?.email
         }
+        //send data in database
+        axiosPublic.post('/users', userData)
+        .then(res => {
+          if (res.data.insertedId) {
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Account created successfully",
+              showConfirmButton: false,
+              timer: 1500
+            });
+            navigate('/')
+          }
+        })
       })
-
   }
 
   const handlerFacebook = (e) => {

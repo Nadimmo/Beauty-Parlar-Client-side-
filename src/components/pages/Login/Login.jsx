@@ -4,11 +4,13 @@ import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+import useAxiosPublic from '../../Hooks/useAxiosPublic';
 
 export const Login = () => {
     const {login, signInWithGoogle} = useContext(AuthContext)
     const navigate = useNavigate()
     const location = useLocation()
+    const axiosPublic = useAxiosPublic()
 
     const handlerSubmit = (e) => {
         e.preventDefault();
@@ -43,23 +45,31 @@ export const Login = () => {
         // console.log(userInfo)
     }
 
-     const handlerGoogle = (e) => {
-        e.preventDefault();
-        signInWithGoogle()
-          .then(res => {
-            if (res.user) {
-              Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Login successfully",
-                showConfirmButton: false,
-                timer: 1500
-              });
-              navigate('/')
-            }
-          })
-    
-      }
+      const handlerGoogle = (e) => {
+         e.preventDefault();
+         signInWithGoogle()
+           .then(res => {
+             // console.log(res.user)
+             const userData  ={
+               name: res.user?.displayName,
+               email: res.user?.email
+             }
+             //send data in database
+             axiosPublic.post('/users', userData)
+             .then(res => {
+               if (res.data.insertedId) {
+                 Swal.fire({
+                   position: "top-end",
+                   icon: "success",
+                   title: "Account created successfully",
+                   showConfirmButton: false,
+                   timer: 1500
+                 });
+                 navigate('/')
+               }
+             })
+           })
+       }
 
 
     return (
