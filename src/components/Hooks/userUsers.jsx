@@ -4,14 +4,14 @@ import { useQuery } from '@tanstack/react-query'
 
 const userUsers = () => {
     const axiosPublic = useAxiosPublic()
-    const {data: users = []} = useQuery({
+    const {refetch, data: users = []} = useQuery({
         queryKey: ["users"],
         queryFn: async () => {
             const res = await axiosPublic.get('/users')
             return res.data
         }
     })
-  return {users}
+  return {users, refetch}
 }
 
 export default userUsers
