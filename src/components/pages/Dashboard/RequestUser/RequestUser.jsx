@@ -3,9 +3,10 @@ import useContact from '../../../Hooks/useContact'
 
 const RequestUser = () => {
     const {contacts} = useContact()
+    // console.log(contacts)
   return (
      <div className="min-h-screen bg-gray-100 p-6 rounded-2xl">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Manage Users</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Request Users</h2>
           <div className="overflow-x-auto rounded-2xl">
             <table className="table-auto w-full bg-white rounded-lg shadow-md">
               <thead className="bg-[#F63E7B] text-white">
@@ -14,7 +15,6 @@ const RequestUser = () => {
                   <th className="px-4 py-2 text-left">Name</th>
                   <th className="px-4 py-2 text-left">Email</th>
                   <th className="px-4 py-2">Phone</th>
-                  <th className="px-4 py-2">Actions</th>
                 </tr>
               </thead>
               <tbody>
@@ -36,8 +36,6 @@ const RequestUser = () => {
                       <td className="px-4 py-2 text-gray-800 font-medium">
                         {user.phone}
                       </td>
-                     
-                     
                     </tr>
                   ))
                 ) : (

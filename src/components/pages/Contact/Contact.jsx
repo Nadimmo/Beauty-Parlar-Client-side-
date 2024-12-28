@@ -29,6 +29,7 @@ const Contact = () => {
           text: 'We will get back to you shortly.',
           icon:'success',
         })
+        from.reset()
       }
     })
     .catch(err=>{

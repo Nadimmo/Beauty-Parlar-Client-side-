@@ -1,32 +1,51 @@
-import React, { useState } from 'react';
+import useAxiosPublic from '../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const SubmissionForm = () => {
-    const [formData, setFormData] = useState({
-        firstName: '',
-        lastName: '',
-        email: '',
-        phoneNumber: '',
-        message: '',
-    });
+    const axiosPublic = useAxiosPublic()
 
-    const handleChange = (e) => {
-        const { name, value } = e.target;
-        setFormData((prevData) => ({
-            ...prevData,
-            [name]: value,
-        }));
-    };
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle form submission (e.g., send data to API)
-        console.log(formData);
-    };
+
+    const handlerSubmit = (e)=>{
+      e.preventDefault()
+      const from = e.target;
+      const firstName = from.firstName.value;
+      const lastName = from.lastName.value;
+      const email = from.email.value;
+      const phone = from.phone.value;
+      const message = from.message.value;
+      const userInfo = {
+        name: firstName+ " "+ lastName,
+        email,
+        phone,
+        message,
+      }
+      axiosPublic.post('/contact',userInfo)
+      .then(res=>{
+        if(res.data.insertedId){
+          Swal.fire({
+            title: 'Message sent successfully!',
+            text: 'We will get back to you shortly.',
+            icon:'success',
+          })
+          from.reset()
+        }
+      })
+      .catch(err=>{
+        Swal.fire({
+          title: 'Failed to send message!',
+          text: 'Please try again later.',
+          icon:'error',
+        })
+      })
+  
+    }
+  
 
     return (
         <div className="mt-28 p-10 bg-[#fff8f5] shadow-lg rounded-lg">
             <h2 className="text-2xl font-bold mb-4 text-center text-[#F63E7B]">Submission Form</h2>
-            <form onSubmit={handleSubmit} className="space-y-4 lg:w-1/2 mx-auto">
+            <form onSubmit={handlerSubmit} className="space-y-4 lg:w-1/2 mx-auto">
                 <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-4">
                         <div>
@@ -37,8 +56,6 @@ const SubmissionForm = () => {
                                 type="text"
                                 id="firstName"
                                 name="firstName"
-                                value={formData.firstName}
-                                onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
@@ -51,8 +68,6 @@ const SubmissionForm = () => {
                                 type="text"
                                 id="lastName"
                                 name="lastName"
-                                value={formData.lastName}
-                                onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
@@ -65,8 +80,6 @@ const SubmissionForm = () => {
                                 type="email"
                                 id="email"
                                 name="email"
-                                value={formData.email}
-                                onChange={handleChange}
                                 required
                                 className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
@@ -78,10 +91,8 @@ const SubmissionForm = () => {
                             </label>
                             <input
                                 type="tel"
-                                id="phoneNumber"
-                                name="phoneNumber"
-                                value={formData.phoneNumber}
-                                onChange={handleChange}
+                                id="phone"
+                                name="phone"
                                 required
                                 className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                             />
@@ -95,8 +106,6 @@ const SubmissionForm = () => {
                         <textarea
                             id="message"
                             name="message"
-                            value={formData.message}
-                            onChange={handleChange}
                             required
                             className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         ></textarea>

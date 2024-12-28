@@ -1,16 +1,17 @@
-import React from 'react'
-import useAxiosPublic from './useAxiosPublic'
 import { useQuery } from '@tanstack/react-query'
+import useAxiosPublic from './useAxiosPublic'
 
 const useContact = () => {
-    const axiosPublic = useAxiosPublic
+    const axiosPublic = useAxiosPublic()
     const { data: contacts = [] } = useQuery({
-        queryKey: '/contact',
+        queryKey: "contacts",
         queryFn: async () => {
             const res = await axiosPublic.get('/contact')
             return res.data
         }
     })
+
+
     return { contacts }
 }
 
