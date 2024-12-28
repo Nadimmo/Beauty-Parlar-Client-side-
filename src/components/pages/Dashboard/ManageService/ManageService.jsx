@@ -1,18 +1,18 @@
 import React from 'react';
 import useService from '../../../Hooks/useService';
-import useAxiosPublic from '../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
 import { Link } from 'react-router-dom';
+import useAxiosSecure from '../../../Hooks/useAxiosSecure';
 
 const ManageService = () => {
   const { services, refetch} = useService();
-  const axiosPublic = useAxiosPublic()
+  const axiosSecure = useAxiosSecure()
 //   console.log(services);
 
 
     const handlerRemoveService = async (id) => {
         // console.log(id)
-        axiosPublic.delete(`/services/${id}`)
+        axiosSecure.delete(`/services/${id}`)
         .then((res) => {
             if(res.data.deletedCount > 0){
                 Swal.fire({

@@ -2,12 +2,12 @@ import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
-// import useAdmin from '../Hooks/useAdmin';
+import useAdmin from '../Hooks/useAdmin';
 
 export const Navbar = () => {
     const { user, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
-    // const [isAdmin] = useAdmin()
+    const {isAdmin} = useAdmin()
 
     const handlerRemove = (e) => {
         e.preventDefault()
@@ -36,16 +36,16 @@ export const Navbar = () => {
                 <NavLink to={"/ourTeam"} className="hover:text-primary transition-colors duration-300">Our Team</NavLink>
             </li>
             {/* admin dashboard */}
-            {/* {user && isAdmin && <li>
+            {user && isAdmin && <li>
                 <NavLink to={"/dashboard/orderList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
-            </li>} */}
+            </li>}
             {/* user dashboard */}
-            {/* {user && !isAdmin && <li>
+            {user && !isAdmin && <li>
                 <NavLink to={"/dashboard/bookingList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
-            </li>} */}
-            <li>
+            </li>}
+            {/* <li>
                 <NavLink to={"/dashboard/bookingList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
-            </li>
+            </li> */}
             <li>
                 <NavLink to={"/contact"} className="hover:text-primary transition-colors duration-300">Contact</NavLink>
             </li>

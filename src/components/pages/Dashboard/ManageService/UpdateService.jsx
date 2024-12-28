@@ -1,10 +1,10 @@
 import React from 'react'
 import { useLoaderData } from 'react-router-dom'
-import useAxiosPublic from '../../../Hooks/useAxiosPublic'
 import Swal from 'sweetalert2'
+import useAxiosSecure from '../../../Hooks/useAxiosSecure'
 
 const UpdateService = () => {
-    const axiosPublic = useAxiosPublic()
+    const axiosSecure = useAxiosSecure()
     const service = useLoaderData()
     // console.log(services)
 
@@ -18,7 +18,7 @@ const UpdateService = () => {
         console.log(updateDoc)
 
         //update data and send in database
-        axiosPublic.patch(`/services/${service._id}`, updateDoc)
+        axiosSecure.patch(`/services/${service._id}`, updateDoc)
         .then(res =>{
             if(res.data.matchedCount > 0){
                 Swal.fire({

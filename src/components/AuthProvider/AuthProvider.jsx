@@ -25,7 +25,6 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setIsLoading(true)
-        localStorage.removeItem('access-token')
         return signOut(auth)
     }
 
@@ -53,7 +52,7 @@ const AuthProvider = ({ children }) => {
             console.log(currentUser)
             setUser(currentUser)
             setIsLoading(false)
-            const userInfo = { email: currentUser.email }
+            const userInfo = { email: currentUser?.email }
             //create jwt
             if (currentUser) {
                 axiosPublic.post("/jwt", userInfo)

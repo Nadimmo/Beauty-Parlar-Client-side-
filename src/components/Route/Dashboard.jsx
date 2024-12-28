@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaBook, FaListAlt, FaStar, FaHome, FaClipboardList, FaPlusCircle, FaUserShield, FaTasks } from 'react-icons/fa';
-// import useAdmin from '../Hooks/useAdmin';
+import useAdmin from '../Hooks/useAdmin';
 
 const Dashboard = () => {
-    // const [isAdmin] = useAdmin()
+    const {isAdmin} = useAdmin()
     return (
         <div className="flex bg-white min-h-screen">
             <div className="lg:w-46 p-6 shadow-md">
@@ -14,7 +14,7 @@ const Dashboard = () => {
                     className="w-22 h-10 lg:block hidden"
                 />
                 <br />
-              
+                {isAdmin ? <>
                     <nav className="space-y-2">
                         <NavLink
                             to={'/dashboard/orderList'}
@@ -42,7 +42,7 @@ const Dashboard = () => {
                             <FaHome className="mr-2" /> Home
                         </NavLink>
                     </nav>
-         
+                </> : <>
                     <nav className="space-y-2">
                         <NavLink
                             to={'/book'}
@@ -65,7 +65,7 @@ const Dashboard = () => {
                             <FaHome className="mr-2" /> Home
                         </NavLink>
                     </nav>
-      
+                </>}
             </div>
             <div className="flex-1 bg-gray-50 p-8">
                 <Outlet />
