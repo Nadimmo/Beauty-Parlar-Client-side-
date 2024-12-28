@@ -1,7 +1,49 @@
 import React from 'react';
 import { FaFacebook, FaInstagram, FaTwitter } from 'react-icons/fa';
+import useAxiosPublic from './../../Hooks/useAxiosPublic';
+import Swal from 'sweetalert2';
 
 const Contact = () => {
+  const axiosPublic = useAxiosPublic()
+
+
+
+  const handlerSubmit = (e)=>{
+    e.preventDefault()
+    const from = e.target;
+    const name = from.name.value;
+    const email = from.email.value;
+    const phone = from.phone.value;
+    const message = from.message.value;
+    const userInfo = {
+      name,
+      email,
+      phone,
+      message,
+    }
+    axiosPublic.post('/contact',userInfo)
+    .then(res=>{
+      if(res.data.insertedId){
+        Swal.fire({
+          title: 'Message sent successfully!',
+          text: 'We will get back to you shortly.',
+          icon:'success',
+        })
+      }
+    })
+    .catch(err=>{
+      Swal.fire({
+        title: 'Failed to send message!',
+        text: 'Please try again later.',
+        icon:'error',
+      })
+    })
+
+  }
+
+
+
+
   return (
     <section className="bg-pink-50 py-16 px-8 md:px-16 lg:px-32">
       <div className="max-w-7xl mx-auto">
@@ -14,10 +56,11 @@ const Contact = () => {
           {/* Contact Form */}
           <div className="bg-white shadow-lg rounded-lg p-6">
             <h2 className="text-2xl font-semibold text-pink-500 mb-4">Contact Us</h2>
-            <form>
+            <form onSubmit={handlerSubmit}>
               <div className="mb-4">
                 <label htmlFor="name" className="block text-gray-700 font-medium mb-2">Name</label>
                 <input
+                name='name'
                   type="text"
                   id="name"
                   className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -28,6 +71,7 @@ const Contact = () => {
               <div className="mb-4">
                 <label htmlFor="email" className="block text-gray-700 font-medium mb-2">Email</label>
                 <input
+                name='email'
                   type="email"
                   id="email"
                   className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -38,6 +82,7 @@ const Contact = () => {
               <div className="mb-4">
                 <label htmlFor="phone" className="block text-gray-700 font-medium mb-2">Phone</label>
                 <input
+                name='phone'
                   type="text"
                   id="phone"
                   className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink-300"
@@ -48,6 +93,7 @@ const Contact = () => {
               <div className="mb-4">
                 <label htmlFor="message" className="block text-gray-700 font-medium mb-2">Message</label>
                 <textarea
+                name='message'
                   id="message"
                   rows="4"
                   className="w-full border border-gray-300 rounded-lg p-2 focus:outline-none focus:ring-2 focus:ring-pink-300"

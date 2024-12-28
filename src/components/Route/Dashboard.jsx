@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { FaBook, FaListAlt, FaStar, FaHome, FaClipboardList, FaPlusCircle, FaUserShield, FaTasks } from 'react-icons/fa';
 import useAdmin from '../Hooks/useAdmin';
+import { FaUserGroup } from 'react-icons/fa6';
 
 const Dashboard = () => {
     const {isAdmin} = useAdmin()
@@ -35,6 +36,11 @@ const Dashboard = () => {
                             to={'/dashboard/manage'}
                             className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                             <FaTasks className="mr-2" /> Manage Service
+                        </NavLink>
+                        <NavLink
+                            to={'/dashboard/contact'}
+                            className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
+                            <FaUserGroup className="mr-2" /> Request User
                         </NavLink>
                         <NavLink
                             to={'/'}

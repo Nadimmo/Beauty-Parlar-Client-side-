@@ -17,6 +17,7 @@ import ManageService from "../pages/Dashboard/ManageService/ManageService";
 import UpdateService from "../pages/Dashboard/ManageService/UpdateService";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "../PrivateRoute/AdminRoute";
+import RequestUser from "../pages/Dashboard/RequestUser/RequestUser";
 
 const Route = createBrowserRouter([
     {
@@ -83,6 +84,10 @@ const Route = createBrowserRouter([
             {
                 path:'addService',
                 element: <AdminRoute><AddService></AddService></AdminRoute>
+            },
+            {
+                path: 'contact',
+                element: <RequestUser></RequestUser>
             }
         ],
     },
