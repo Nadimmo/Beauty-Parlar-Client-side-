@@ -16,6 +16,7 @@ import OrderList from "../pages/Dashboard/OrderList/OrderList";
 import ManageService from "../pages/Dashboard/ManageService/ManageService";
 import UpdateService from "../pages/Dashboard/ManageService/UpdateService";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AdminRoute from "../PrivateRoute/AdminRoute";
 
 const Route = createBrowserRouter([
     {
@@ -64,24 +65,24 @@ const Route = createBrowserRouter([
             //admin dashboard
             {
                 path:'orderList',
-                element: <OrderList></OrderList>
+                element: <AdminRoute>  <OrderList></OrderList></AdminRoute>
             },
             {
                 path:'manage',
-                element: <ManageService></ManageService>
+                element: <AdminRoute><ManageService></ManageService></AdminRoute>
             },
             {
                 path: 'users',
-                element: <ManageUsers></ManageUsers>
+                element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
             },
             {
                 path:'update/:id',
-                element: <UpdateService></UpdateService>,
+                element: <AdminRoute><UpdateService></UpdateService></AdminRoute>,
                 loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
             },
             {
                 path:'addService',
-                element: <AddService></AddService>
+                element: <AdminRoute><AddService></AddService></AdminRoute>
             }
         ],
     },
