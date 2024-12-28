@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
 
     const logOut = () => {
         setIsLoading(true)
-        localStorage.removeItem('token')
+        localStorage.removeItem('access-token')
         return signOut(auth)
     }
 
@@ -49,27 +49,29 @@ const AuthProvider = ({ children }) => {
 
 
     useEffect(() => {
-        const unsubscribe = onAuthStateChanged(auth, (CurrentUser) => {
-            setUser(CurrentUser)
-            console.log(CurrentUser)
+        const Unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+            console.log(currentUser)
+            setUser(currentUser)
             setIsLoading(false)
-            //create jwt token
-            if (CurrentUser) {
-                axiosPublic.post('/jwt', { email: CurrentUser?.email })
-                    .then(res => {
+            const userInfo = { email: currentUser.email }
+            //create jwt
+            if (currentUser) {
+                axiosPublic.post("/jwt", userInfo)
+                    .then((res) => {
+                        console.log(res.data)
                         if (res.data.token) {
-                            localStorage.setItem('token', res.data.token)
-                        }else{
-                            localStorage.removeItem('token')
+                            localStorage.setItem('access-token', res.data.token)
                         }
                     })
+            } else {
+                localStorage.removeItem('access-token')
             }
 
         })
         return () => {
-            unsubscribe()
+            Unsubscribe()
         }
-    }, [])
+    }, [axiosPublic])
 
     const AuthInfo = {
         register,

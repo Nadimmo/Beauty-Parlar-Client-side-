@@ -7,8 +7,8 @@ const useReview = () => {
     const { data: reviews = [] } = useQuery({
         queryKey: ['reviews'],
         queryFn: async () => {
-            const res = axiosPublic.get('reviews')
-            return (await res).data
+            const res = await axiosPublic.get('/reviews')
+            return res.data
         }
     })
     return {reviews}

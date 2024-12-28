@@ -1,35 +1,56 @@
 import React from 'react';
 import userUsers from '../../../Hooks/userUsers';
-import useAxiosPublic from './../../../Hooks/useAxiosPublic';
 import Swal from 'sweetalert2';
+import useAxiosSecure from './../../../Hooks/useAxiosSecure';
+import { FaUserCheck } from 'react-icons/fa';
 
 const ManageUsers = () => {
-  const {refetch, users} = userUsers();
-  const axiosPublic = useAxiosPublic()
-  console.log(users)
+  const { refetch, users } = userUsers();
+  const axiosSecure = useAxiosSecure()
+ 
 
-
-
-  const handlerRemove = (id)=>{
-    axiosPublic.delete(`/users/${id}`)
-    .then(res =>{
-      if(res.data.deletedCount > 0){
-        Swal.fire({
-          icon: 'success',
-          title: 'User deleted successfully',
-        })
-        refetch()
-      }
-    })
-    .catch(err =>{
-      Swal.fire({
-        icon: 'error',
-        title: 'Failed to delete user',
-        text: err.response.data.message
+  const handlerRemove = (id) => {
+    axiosSecure.delete(`/users/${id}`)
+      .then(res => {
+        if (res.data.deletedCount > 0) {
+          Swal.fire({
+            icon: 'success',
+            title: 'User deleted successfully',
+          })
+          refetch()
+        }
       })
-    })
-
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to delete user',
+          text: err.response.data.message
+        })
+      })
   }
+
+  const handlerMakeAdmin = (id) => {
+    axiosSecure.patch(`/users/makeAdmin/${id}`)
+      .then(res => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            icon: 'success',
+            title: 'User role updated successfully',
+          })
+          refetch()
+        }
+      })
+      .catch(err => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Failed to update user role',
+          text: err.response.data.message
+        })
+      })
+  }
+
+
+
 
   return (
     <div className="min-h-screen bg-gray-100 p-6 rounded-2xl">
@@ -53,7 +74,7 @@ const ManageUsers = () => {
                   className="border-b hover:bg-gray-100 transition duration-200"
                 >
                   <td className="px-4 py-2 text-gray-800 font-medium">
-                    {index+1}.
+                    {index + 1}.
                   </td>
                   <td className="px-4 py-2 text-gray-800 font-medium">
                     {user.name}
@@ -62,17 +83,21 @@ const ManageUsers = () => {
                     {user.email}
                   </td>
                   <td className="px-4 py-2 text-center space-x-2">
-                    <button
+                    {user?.role === 'admin' ? <>
+                    <FaUserCheck className='ml-20'></FaUserCheck>
+                    </> : <button
                       className="bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2 rounded-full font-semibold hover:from-green-500 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
-                      onClick={() => console.log(`Make Admin: ${user.name}`)}
+                      onClick={() => handlerMakeAdmin(user._id)}
                     >
                       Make Admin
                     </button>
+                    }
+
                   </td>
                   <td className="px-4 py-2 text-center space-x-2">
                     <button
                       className="bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-2 rounded-full font-semibold hover:from-red-500 hover:to-red-700 shadow-lg transform hover:scale-105 transition duration-300"
-                      onClick={()=>handlerRemove(user._id)}
+                      onClick={() => handlerRemove(user._id)}
                     >
                       Delete
                     </button>

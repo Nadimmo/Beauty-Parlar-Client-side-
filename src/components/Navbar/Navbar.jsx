@@ -2,23 +2,25 @@ import React, { useContext } from 'react';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 import Swal from 'sweetalert2';
+// import useAdmin from '../Hooks/useAdmin';
 
 export const Navbar = () => {
-    const {user,logOut} = useContext(AuthContext)
+    const { user, logOut } = useContext(AuthContext)
     const navigate = useNavigate()
+    // const [isAdmin] = useAdmin()
 
-    const handlerRemove =(e)=>{
+    const handlerRemove = (e) => {
         e.preventDefault()
         logOut()
-        .then(()=>{
-            Swal.fire({
-                title: 'Logged out successfully!',
-                text: 'You will be redirected to the home page.',
-                icon:'success',
-                confirmButtonText: 'Continue'
+            .then(() => {
+                Swal.fire({
+                    title: 'Logged out successfully!',
+                    text: 'You will be redirected to the home page.',
+                    icon: 'success',
+                    confirmButtonText: 'Continue'
+                })
+                navigate('/')
             })
-            navigate('/')
-        })
     }
 
 
@@ -33,6 +35,14 @@ export const Navbar = () => {
             <li>
                 <NavLink to={"/ourTeam"} className="hover:text-primary transition-colors duration-300">Our Team</NavLink>
             </li>
+            {/* admin dashboard */}
+            {/* {user && isAdmin && <li>
+                <NavLink to={"/dashboard/orderList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
+            </li>} */}
+            {/* user dashboard */}
+            {/* {user && !isAdmin && <li>
+                <NavLink to={"/dashboard/bookingList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
+            </li>} */}
             <li>
                 <NavLink to={"/dashboard/bookingList"} className="hover:text-primary transition-colors duration-300">Dashboard</NavLink>
             </li>
@@ -87,12 +97,12 @@ export const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-              {
-                user? <>
-                <p className="text-lg font-bold mr-2">{user?.displayName}</p>
-                 <button onClick={handlerRemove} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Sign Out </button>
-                </>:  <Link to={'/login'} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Login </Link>
-              }
+                {
+                    user ? <>
+                        <p className="text-lg font-bold mr-2">{user?.displayName}</p>
+                        <button onClick={handlerRemove} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Sign Out </button>
+                    </> : <Link to={'/login'} className="btn bg-[#F73E7B] hover:bg-violet-500 text-white rounded-lg">Login </Link>
+                }
             </div>
         </div>
     );

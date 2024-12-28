@@ -1,12 +1,12 @@
 import { useQuery } from '@tanstack/react-query';
-import useAxiosSecure from './useAxiosSecure';
+import useAxiosPublic from './useAxiosPublic';
 
 const useService = () => {
-    const axiosSecure = useAxiosSecure()
+    const axiosPublic = useAxiosPublic()
     const {refetch, data: services = [] } = useQuery({
-        queryKey: ['service'],
+        queryKey: ['services'],
         queryFn: async () => {
-                const response = await axiosSecure.get('/services')
+                const response = await axiosPublic.get('/services')
                 return response.data
         }
     })
