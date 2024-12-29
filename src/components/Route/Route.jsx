@@ -18,6 +18,7 @@ import UpdateService from "../pages/Dashboard/ManageService/UpdateService";
 import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import RequestUser from "../pages/Dashboard/RequestUser/RequestUser";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 const Route = createBrowserRouter([
     {
@@ -88,6 +89,10 @@ const Route = createBrowserRouter([
             {
                 path: 'contact',
                 element: <RequestUser></RequestUser>
+            },
+            {
+                path: 'payment',
+                element: <Payment></Payment>
             }
         ],
     },

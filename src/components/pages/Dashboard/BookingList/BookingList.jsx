@@ -1,5 +1,6 @@
 import React from 'react';
 import useBooking from '../../../Hooks/useBooking';
+import { Link } from 'react-router-dom';
 
 const BookingList = () => {
   const { bookings } = useBooking();
@@ -25,6 +26,9 @@ const BookingList = () => {
         <p className="text-lg font-semibold text-gray-700">
           Total Price: <span className="text-[#F63E7B]">${totalPrice}</span>
         </p>
+        <Link to={'/dashboard/payment'} className="text-lg btn font-semibold text-[#F63E7B]">
+           Payment
+        </Link>
       </div>
 
       {/* Booking Table */}

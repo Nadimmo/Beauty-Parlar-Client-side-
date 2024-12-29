@@ -51,7 +51,7 @@ const Dashboard = () => {
                 </> : <>
                     <nav className="space-y-2">
                         <NavLink
-                            to={'/book'}
+                            to={'/dashboard/payment'}
                             className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
                             <FaBook className="mr-2" /> Book
                         </NavLink>
