@@ -15,7 +15,7 @@ const UpdateService = () => {
         const description = form.description.value ;
         const price = form.price.value ;
         const updateDoc = { title, description, price }
-        console.log(updateDoc)
+        // console.log(updateDoc)
 
         //update data and send in database
         axiosSecure.patch(`/services/${service._id}`, updateDoc)

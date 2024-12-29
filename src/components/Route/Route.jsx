@@ -85,7 +85,7 @@ const Route = createBrowserRouter([
             {
                 path:'update/:id',
                 element: <AdminRoute><UpdateService></UpdateService></AdminRoute>,
-                loader: ({params})=>fetch(`http://localhost:5000/services/${params.id}`)
+                loader: ({params})=>fetch(`https://jerin-server-side.vercel.app/services/${params.id}`)
             },
             {
                 path:'addService',

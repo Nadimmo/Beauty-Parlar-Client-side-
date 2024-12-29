@@ -43,7 +43,7 @@ const Services = () => {
         //send data to database
         axiosPublic.post('/customerBooking', formData)
             .then(res => {
-                console.log(res.data);
+                // console.log(res.data);
                 // Show success message
                 if (res.data.insertedId) {
                     Swal.fire({
