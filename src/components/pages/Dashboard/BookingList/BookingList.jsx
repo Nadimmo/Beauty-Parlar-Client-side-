@@ -18,53 +18,60 @@ const BookingList = () => {
         Booking List
       </h2>
 
-      {/* Total Bookings and Price */}
-      <div className="flex justify-between text-center mb-8">
-        <p className="text-lg font-semibold text-gray-700">
-          Total Bookings: <span className="text-[#F63E7B]">{totalBookings}</span>
-        </p>
-        <p className="text-lg font-semibold text-gray-700">
-          Total Price: <span className="text-[#F63E7B]">${totalPrice}</span>
-        </p>
-        <Link to={'/dashboard/payment'} className="text-lg btn font-semibold text-[#F63E7B]">
-           Payment
-        </Link>
-      </div>
+      {totalBookings > 0 ? <>
+        {/* Total Bookings and Price */}
+        <div className="flex justify-between text-center mb-8">
+          <p className="text-lg font-semibold text-gray-700">
+            Total Bookings: <span className="text-[#F63E7B]">{totalBookings}</span>
+          </p>
+          <p className="text-lg font-semibold text-gray-700">
+            Total Price: <span className="text-[#F63E7B]">${totalPrice}</span>
+          </p>
+          <Link to={'/dashboard/payment'} className="text-lg btn font-semibold text-[#F63E7B]">
+            Payment
+          </Link>
+        </div>
 
-      {/* Booking Table */}
-      <div className="overflow-x-auto rounded-2xl">
-        <table className="min-w-full bg-white shadow-md rounded-lg">
-          <thead>
-            <tr className="bg-[#F63E7B] text-white">
-              <th></th>
-              <th className="py-3 px-6 text-left">Title</th>
-              <th className="py-3 px-6 text-left">Email</th>
-              <th className="py-3 px-6 text-left">Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            {bookings.map((booking, index) => (
-              <tr
-                key={booking._id}
-                className={`hover:bg-gray-100 transition duration-300 ${
-                  index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
-                }`}
-              >
-                <td className="py-3 px-6 text-gray-800 font-medium">
-                 {index+1}.
-                </td>
-                <td className="py-3 px-6 text-gray-800 font-medium">
-                  {booking.serviceTitle}
-                </td>
-                <td className="py-3 px-6 text-gray-600">{booking.email}</td>
-                <td className="py-3 px-6 text-[#F63E7B] font-semibold">
-                  ${booking.price}
-                </td>
+        {/* Booking Table */}
+        <div className="overflow-x-auto rounded-2xl">
+          <table className="min-w-full bg-white shadow-md rounded-lg">
+            <thead>
+              <tr className="bg-[#F63E7B] text-white">
+                <th></th>
+                <th className="py-3 px-6 text-left">Title</th>
+                <th className="py-3 px-6 text-left">Email</th>
+                <th className="py-3 px-6 text-left">Price</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+            </thead>
+            <tbody>
+              {bookings.map((booking, index) => (
+                <tr
+                  key={booking._id}
+                  className={`hover:bg-gray-100 transition duration-300 ${index % 2 === 0 ? 'bg-gray-50' : 'bg-white'
+                    }`}
+                >
+                  <td className="py-3 px-6 text-gray-800 font-medium">
+                    {index + 1}.
+                  </td>
+                  <td className="py-3 px-6 text-gray-800 font-medium">
+                    {booking.serviceTitle}
+                  </td>
+                  <td className="py-3 px-6 text-gray-600">{booking.email}</td>
+                  <td className="py-3 px-6 text-[#F63E7B] font-semibold">
+                    ${booking.price}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </> : <>
+        <p className="text-center text-lg font-medium text-gray-600 mt-16">
+          No bookings available at the moment. Please check back later or make a booking!
+        </p>
+      </>}
+
+
     </div>
   );
 };

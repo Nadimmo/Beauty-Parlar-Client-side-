@@ -19,6 +19,7 @@ import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import RequestUser from "../pages/Dashboard/RequestUser/RequestUser";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const Route = createBrowserRouter([
     {
@@ -63,6 +64,10 @@ const Route = createBrowserRouter([
             {
                 path: 'review',
                 element: <Review></Review>
+            },
+            {
+                path: 'paymentHistory',
+                element: <PaymentHistory></PaymentHistory>
             },
             //admin dashboard
             {
