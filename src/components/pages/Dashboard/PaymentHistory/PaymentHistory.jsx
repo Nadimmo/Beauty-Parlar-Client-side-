@@ -13,6 +13,7 @@ const PaymentHistory = () => {
           <table className="min-w-full table-auto">
             <thead>
               <tr className="bg-pink-100">
+                <th></th>
                 <th className="px-6 py-3 text-left font-semibold text-pink-700">
                   First Name
                 </th>
@@ -22,6 +23,7 @@ const PaymentHistory = () => {
                 <th className="px-6 py-3 text-left font-semibold text-pink-700">
                   Transaction ID
                 </th>
+                
               </tr>
             </thead>
             <tbody>
@@ -33,6 +35,9 @@ const PaymentHistory = () => {
                   } border-b hover:bg-pink-200 transition duration-150`}
                 >
                   <td className="px-6 py-3 text-gray-700">
+                    {index+1}. 
+                  </td>
+                  <td className="px-6 py-3 text-gray-700">
                     {payment.name || "N/A"} {/* First Name */}
                   </td>
                   <td className="px-6 py-3 text-gray-700">
@@ -41,6 +46,7 @@ const PaymentHistory = () => {
                   <td className="px-6 py-3 text-gray-700">
                     {payment.transactionId || "N/A"} {/* Transaction ID */}
                   </td>
+                 
                 </tr>
               ))}
             </tbody>

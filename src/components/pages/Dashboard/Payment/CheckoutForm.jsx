@@ -98,7 +98,6 @@ const CheckoutForm = () => {
           bookingsId: bookings.map((booking) => booking._id),
           price: totalPrice,
           transactionId: paymentIntent.id,
-          status: "pending"
         };
 
         const res = await axiosPublic.post("/payments", payment);
@@ -122,36 +121,45 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <CardElement
-          options={{
-            style: {
-              base: {
-                fontSize: "16px",
-                color: "#424770",
-                "::placeholder": {
-                  color: "#aab7c4",
-                },
-              },
-              invalid: {
-                color: "#9e2146",
-              },
+    <div className="max-w-lg mx-auto mt-8 p-6 bg-white rounded-lg shadow-md">
+  <form onSubmit={handleSubmit} className="space-y-4">
+    <CardElement
+      options={{
+        style: {
+          base: {
+            fontSize: "16px",
+            color: "#424770",
+            "::placeholder": {
+              color: "#aab7c4",
             },
-          }}
-        />
-        <button
-          type="submit"
-          disabled={!stripe || !clientSecret || isProcessing}
-        >
-          {isProcessing ? "Processing..." : "Pay"}
-        </button>
-      </form>
-      {cartError && <p style={{ color: "red" }}>{cartError}</p>}
-      {transactionId && (
-        <p style={{ color: "green" }}>Transaction ID: {transactionId}</p>
-      )}
-    </div>
+          },
+          invalid: {
+            color: "#9e2146",
+          },
+        },
+      }}
+      className="p-4 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500"
+    />
+    <button
+      type="submit"
+      disabled={!stripe || !clientSecret || isProcessing}
+      className={`w-full py-2 px-4 text-white rounded-lg shadow-md transition-all duration-300 ${
+        isProcessing
+          ? "bg-gray-400 cursor-not-allowed"
+          : "bg-indigo-600 hover:bg-indigo-700 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+      }`}
+    >
+      {isProcessing ? "Processing..." : "Pay"}
+    </button>
+  </form>
+  {cartError && <p className="mt-4 text-red-500 text-sm">{cartError}</p>}
+  {transactionId && (
+    <p className="mt-4 text-green-500 text-sm">
+      Transaction ID: {transactionId}
+    </p>
+  )}
+</div>
+
   );
 };
 

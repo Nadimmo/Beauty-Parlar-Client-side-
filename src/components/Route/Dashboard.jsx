@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaBook, FaListAlt, FaStar, FaHome, FaClipboardList, FaPlusCircle, FaUserShield, FaTasks, FaPaypal } from 'react-icons/fa';
+import { FaBook, FaListAlt, FaStar, FaHome, FaClipboardList, FaPlusCircle, FaUserShield, FaTasks, FaPaypal, FaWallet } from 'react-icons/fa';
 import useAdmin from '../Hooks/useAdmin';
 import { FaUserGroup } from 'react-icons/fa6';
 
@@ -53,7 +53,7 @@ const Dashboard = () => {
                         <NavLink
                             to={'/dashboard/payment'}
                             className="flex  items-center text-gray-700 hover:text-pink-500 transition-colors">
-                            <FaBook className="mr-2" /> Book
+                            <FaWallet className="mr-2" /> Payment
                         </NavLink>
                         <NavLink
                             to={'/dashboard/bookingList'}
