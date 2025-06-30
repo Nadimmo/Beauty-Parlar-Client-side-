@@ -86,7 +86,7 @@ const ManageUsers = () => {
                     {user?.role === 'admin' ? <>
                     <FaUserCheck className='ml-20'></FaUserCheck>
                     </> : <button
-                      className="bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2 rounded-full font-semibold hover:from-green-500 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
+                      className="bg-gradient-to-r from-green-400 to-green-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-green-500 hover:to-green-700 shadow-lg transform hover:scale-105 transition duration-300"
                       onClick={() => handlerMakeAdmin(user._id)}
                     >
                       Make Admin
@@ -96,7 +96,7 @@ const ManageUsers = () => {
                   </td>
                   <td className="px-4 py-2 text-center space-x-2">
                     <button
-                      className="bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-2 rounded-full font-semibold hover:from-red-500 hover:to-red-700 shadow-lg transform hover:scale-105 transition duration-300"
+                      className="bg-gradient-to-r from-red-400 to-red-600 text-white px-4 py-2 rounded-xl font-semibold hover:from-red-500 hover:to-red-700 shadow-lg transform hover:scale-105 transition duration-300"
                       onClick={() => handlerRemove(user._id)}
                     >
                       Delete

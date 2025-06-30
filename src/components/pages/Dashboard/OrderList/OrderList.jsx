@@ -7,7 +7,7 @@ const OrderList = () => {
   const totalBookings = orders.length;
 
   return (
-    <div className="mt-10 mx-10 bg-gray-100  rounded-2xl p-8 shadow-md min-h-screen">
+    <div className=" bg-gray-100  rounded-2xl p-6 shadow-md min-h-screen">
     <h2 className="text-3xl  font-bold text-center text-gray-800 mb-8">
       Order List
     </h2>
